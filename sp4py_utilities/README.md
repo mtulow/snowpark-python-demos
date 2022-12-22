@@ -1,23 +1,34 @@
-# sp4py_utilities
+# Snowpark for Python Utilities
+---
 
 ## 1. Overview 
 Example of how scikit-learn preprocessing functionality can be implemented using Snowpark for Python, enabling to do most of the preprocessing of data within Snowflake.
+
+---
+---
 
 ## 2. Prerequisite
 * Snowflake account
 * Snowpark for Python version >= 0.6.0 (install through pip or conda to get latest)
 * The modules are depended on the following Python libraries:
-   ```
+   ```py
    scipy
    numpy
    ```
 
+---
+---
+
 ## 3. What you'll learn
 This example shows how Snowpark for Python can be extended with similar functionality as scikit-learn preprocessing. 
 
+---
+---
+
 ## 4. Usage/Steps
+
 ### Preprocessing
-A module for data preprocessing of numeric and categorical features/columns using Snowpark DataFrames.
+sonA module for data preprocessing of numeric and categorical features/columns using Snowpark DataFrames.
 
 The functions should in most cases follow the [sklearn.preprocessing](https://scikit-learn.org/stable/modules/classes.html#module-sklearn.preprocessing) 
 library with fit, transform etc methods and mostly the same parameters.
@@ -29,6 +40,8 @@ In order to use the module download the **preprocessing** folder and make sure i
 
 For more examples see the [**preprocessing_demo** notebook](preprocessing_demo.ipynb).
 
+---
+
 #### Scalers
 The preprocessing module has the following scalers that can be used with numeric features:
 * MinMaxScaler: Transform each column by scaling each feature to a given range.
@@ -38,8 +51,10 @@ The preprocessing module has the following scalers that can be used with numeric
 * Normalizer: Normalize individually to unit norm.
 * Binarizer: Binarize data (set feature values to 0 or 1) according to a threshold.
 
-Example using the MinMaxScaler
-```
+---
+
+#### Example using the MinMaxScaler
+```py
 import preprocessing as pp
 
 session = Session.builder.configs(connection_parameters).create()
@@ -59,14 +74,16 @@ mms.fit(df_housing)
 mms_tr_df = mms.transform(df_housing)
 ```
 
+---
+
 #### Encoders
 The preprocessing module has the following encoders that can be used with categorical features:
-* OneHotEncoder: Encode categorical features as a one-hot.
-* OrdinalEncoder: Encodes a string column of labels to a column of label indices. The indices are in [0, number of labels].
-* LabelEncoder: A label indexer that maps a string column of labels to a column of label indices.
+* `OneHotEncoder`: Encode categorical features as a one-hot.
+* `OrdinalEncoder`: Encodes a string column of labels to a column of label indices. The indices are in [0, number of labels].
+* `LabelEncoder`: A label indexer that maps a string column of labels to a column of label indices.
 
 Example using the OneHotEncoder
-```
+```py
 import preprocessing as pp
 
 session = Session.builder.configs(connection_parameters).create()
@@ -82,6 +99,9 @@ ohe.fit(df_churn)
 # encoding are not done until a action method is called ie show(), collect() etc.
 ohe_tr_df = ohe.transform(df_churn)
 ```
+
+---
+
 ### UDF Transform
 A module for using the fitted scalers/encoders created with the preprocessing module in Python UDFs.
 
@@ -91,21 +111,23 @@ and if using it for Python UDFs you also need to upload it to Snowflake, the sim
 For more examples see the [**udf_transform_demo** notebook](udf_transform_demo.ipynb).
 
 The module has the following functions:
-* udf_minmax_transform
-* udf_minmax_inverse_transform
-* udf_standard_transform
-* udf_standard_inverse_transform
-* udf_maxabs_transform
-* udf_maxabs_inverse_transform
-* udf_robust_transform
-* udf_robust_inverse_transform
-* udf_normalizer_transform
-* udf_binarizer_transform
+* `udf_minmax_transform`
+* `udf_minmax_inverse_transform`
+* `udf_standard_transform`
+* `udf_standard_inverse_transform`
+* `udf_maxabs_transform`
+* `udf_maxabs_inverse_transform`
+* `udf_robust_transform`
+* `udf_robust_inverse_transform`
+* `udf_normalizer_transform`
+* `udf_binarizer_transform`
 
 Input data can be a list or a numpy array.
 
-Example using the udf_minmax_transform function:
-```
+---
+
+#### Example using the udf_minmax_transform function:
+```py
 import preprocessing as pp
 import udf_transform as ut
 
@@ -128,3 +150,7 @@ mms_udf = mms.get_udf_encoder()
 # This can be done in a Python UDF, see the udf_transform_demo notebook for an example.
 mms_scaled_data = ut.udf_minmax_transform(data, mms_udf)
 ```
+
+---
+---
+---
