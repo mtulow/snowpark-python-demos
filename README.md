@@ -28,9 +28,9 @@ Snowpark For Python: [API Source Code](https://github.com/snowflakedb/snowpark-p
 - [Real Estate Rentability Prediction](Real-Estate-Rentability-Prediction/README.md)
 - [Retail Churn Analytics](Retail-Churn-Analytics/README.md)
 - [Sentiment Analysis](Sentiment-Analysis/readme.md)
-- [Snowpark Credit Scoring](Snowpark-credit-scoring/README.md)
-- [Snowpark ML Housing Demo](snowpark-ml-housing-demo/README.md)
-- [Snowpark for Python Utilities](snowpark-python-utilities/README.md)
+- [Snowpark Credit Scoring](Snowpark-Credit-Scoring/README.md)
+- [Snowpark ML Housing Demo](Snowpark-ML-Housing-Demo/README.md)
+- [Snowpark for Python Utilities](Snowpark-Python-Utilities/README.md)
 
 ---
 
